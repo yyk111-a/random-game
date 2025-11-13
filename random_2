@@ -1,0 +1,37 @@
+import random
+
+
+def get_player_guess():
+    while True:
+        guess_input = input("请输入你的猜测（1-100）:")
+        if not guess_input.isdigit():
+            print("错误:请输入数字！")
+            continue
+        guess = int(guess_input)
+        if guess < 1 or guess > 100:
+            print("请输入1-100之间的数字！")
+            continue
+        return guess
+
+
+def guess_number():
+    target = random.randint(1, 100)
+    attempts = 0
+    while True:
+        try:
+            guess = get_player_guess()
+            attempts += 1
+            if guess < target:
+                print(f"{guess}太小了")
+            elif guess > target:
+                print(f"{guess}太大了")
+            else:
+                print(f"恭喜！你猜对了！")
+                print(f"恭喜你，你用{attempts}次猜对数字{target}")
+                break
+        except Exception as e:
+            print(f"发生了未知错误{e}")
+
+if __name__ == "__main__":
+    guess_number()
+    input("游戏结束，按回车")
